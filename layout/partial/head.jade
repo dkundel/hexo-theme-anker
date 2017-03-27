@@ -1,5 +1,6 @@
 meta(charset="utf-8")
 meta(name="X-UA-Compatible", content="IE=edge")
+| !{ autoCanonical(config, page) }
 
 title 
     block site_title
@@ -8,9 +9,24 @@ block description
     meta(name="description", content= config.description ? config.description : 'A Blog Powered By Hexo')
 
 meta(name="viewport", content="width=device-width, initial-scale=1")
-link(rel="icon", href=url_for(theme.favicon))
+link(rel="icon", type="image/png", href=url_for(theme.favicon))
 link(rel="stylesheet", href=url_for("css/apollo.css"))
+link(rel="stylesheet", href="https://cdn.jsdelivr.net/emojione/2.2.7/assets/css/emojione.min.css")
 
 - var xml = config.url + '/atom.xml'
     link(rel="search", type="application/opensearchdescription+xml", href=xml, title=config.title)
-    
+
+- var title = page.title || config.title
+meta(property="og:title", content= title)
+- var base_url = config.url;
+- if (config.url.charAt(config.url.length - 1) !== '/') base_url += '/';
+- var canon_url = base_url + page.canonical_path.replace('index.html', '')
+meta(property="og:url", content=canon_url)
+meta(property="twitter:site", content=config.twitter)
+meta(property="twitter:title", content= title)
+block socialmeta
+    meta(property="og:type", content="website")
+    meta(property="og:image", content=base_url + "open-graph.png")
+    meta(property="twitter:card", content="summary")
+    meta(property="twitter:description", content=config.description)
+    meta(property="twitter:image", content=base_url + "favicon.png")

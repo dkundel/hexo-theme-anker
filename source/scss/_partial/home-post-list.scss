@@ -7,6 +7,20 @@
             border-bottom: 0px;
         }
     }
+
+    .post-body {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    a.post-header {
+        width: 100%;
+
+        .post-header--image {
+            width: 100%;
+        }
+    }
+
     .post-content{
         h2, h3, h4, h5, h6 {
             &:before {

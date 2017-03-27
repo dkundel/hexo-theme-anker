@@ -3,6 +3,16 @@
 }
 
 .post-block {
+    .post-cover-image {
+        max-width: 100%;
+        margin: 1em auto;
+    }
+
+    .post-body {
+        padding-left: 20px;
+        padding-right: 10px;
+    }
+
     .post-title {
         margin: 0.65em 0;
         color: #2c3e50;
@@ -135,8 +145,24 @@ pre {
         margin: 0;
     }
     .gutter {
-        display: none;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: right;
+        line-height: 1.5em;
+        margin: 0;
+        background: inherit;
+        width: auto;
+        background: #efefef;
+        color: #666;
+
+        pre {
+            padding: 1.2em 0;
+            line-height: 1.5em;
+            margin: 0;
+            background: inherit;
+        }
     }
+
     .code pre {
         padding: 1.2em 1.4em;
         line-height: 1.5em;
@@ -144,6 +170,13 @@ pre {
         .line {
             width: auto;
             height: 18px;
+        }
+
+        .marked {
+            background: rgba(255, 255, 0, 0.5);
+            margin-left: -1.4em;
+            margin-right: -1.4em;
+            padding-left: 1.4em;
         }
     }
 }
@@ -175,6 +208,12 @@ $signs: ("html", "js", "bash", "css", "scss","diff", "java", "xml", "python", "j
 
 .highlight.cpp .code:after {
     content: 'C++';
+}
+
+.highlight figcaption {
+    color: #777;
+    font-size: 0.9em;
+    padding: 5px 10px;
 }
 
 pre {

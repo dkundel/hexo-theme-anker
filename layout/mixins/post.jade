@@ -2,7 +2,7 @@ mixin postInfo(item)
     .post-info
         != full_date(item.date, 'll')
         if item.from && (is_home() || is_post())
-            a.post-from(href=item.from target="_blank" title=item.from) 翻译 · 原文地址
+            a.post-from(href=item.from target="_blank" title=item.from)
 
 //- Index Page
 mixin posts()
@@ -10,13 +10,17 @@ mixin posts()
         - page.posts.each(function (item) {
             li.post-list-item
                 article.post-block
-                    h2.post-title
-                        a.post-title-link(href= url_for(item.path))
-                            != item.title
-                    +postInfo(item)
-                    .post-content
-                        != item.excerpt
-                    a.read-more(href= url_for(item.path))!= __('more')
+                    if item.image
+                        a.post-header(href= url_for(item.path))
+                            img.post-header--image(src=url_for(item.path + '/' + item.image))
+                    .post-body
+                        h2.post-title
+                            a.post-title-link(href= url_for(item.path))
+                                != item.title
+                        +postInfo(item)
+                        .post-content
+                            != item.excerpt
+                        a.read-more(href= url_for(item.path))!= __('more')
         - })
 
 //- Archive Page
@@ -40,8 +44,11 @@ mixin postList()
 mixin post(item)
     .post
         article.post-block
-            h1.post-title
-                != item.title
-            +postInfo(item)
-            .post-content
-                != item.content
+            .post-header
+                img.post-cover-image(src=page.image, alt=page.image_alt)
+            .post-body
+                h1.post-title
+                    != item.title
+                +postInfo(item)
+                .post-content
+                    != item.content

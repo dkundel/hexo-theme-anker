@@ -1,11 +1,30 @@
 extends partial/layout
 
+- var base_url = config.url;
+- if (config.url.charAt(config.url.length - 1) !== '/') base_url += '/';
+
 block site_title
     != page.title + " · " + config.title
 
 block description
     - var desc = page.desc || page.title + ' - ' + config.author;
     meta(name="description", content=desc)
+
+block socialmeta
+    - var desc = page.desc || page.title + ' - ' + config.author;
+    - var imageUrl = base_url.substr(0, base_url.length - 1) + url_for(page.path) + page.image
+    meta(property="og:type", content="article")
+    meta(property="og:image", content= imageUrl)
+    meta(property="og:image:width", content="640")
+    meta(property="og:image:height", content="240")
+    meta(property="og:author", content= page.author || config.author)
+    - page.tags.each(function (tag) {
+        meta(property="og:tag", content=tag.name)
+    - })
+    meta(property="twitter:card", content="summary_large_image")
+    meta(property="twitter:description", content=desc)
+    meta(property="twitter:image", content=imageUrl)
+    meta(property="twitter:image:alt", content=page.image_alt)
 
 block container
     include mixins/post
