@@ -13,10 +13,12 @@ block description
 block socialmeta
     - var desc = page.desc || page.title + ' - ' + config.author;
     - var imageUrl = base_url.substr(0, base_url.length - 1) + url_for(page.path) + page.image
+    - var imageWidth = page.imageWidth || 640
+    - var imageHeight = page.imageHeight || 240
     meta(property="og:type", content="article")
     meta(property="og:image", content= imageUrl)
-    meta(property="og:image:width", content="640")
-    meta(property="og:image:height", content="240")
+    meta(property="og:image:width", content=imageWidth)
+    meta(property="og:image:height", content=imageHeight)
     meta(property="og:author", content= page.author || config.author)
     - page.tags.each(function (tag) {
         meta(property="og:tag", content=tag.name)

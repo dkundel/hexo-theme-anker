@@ -45,10 +45,17 @@ mixin post(item)
     .post
         article.post-block
             .post-header
-                img.post-cover-image(src=page.image, alt=page.image_alt)
+                img.post-cover-image(src=item.image, alt=item.imageAlt)
             .post-body
                 h1.post-title
                     != item.title
                 +postInfo(item)
                 .post-content
                     != item.content
+                .share-link-box
+                    - var shareTwitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(item.title) + "&url=" + encodeURIComponent(url.replace('/index.html', '')) + "&via=" + config.twitter.replace('@', '')
+                    - var followUrl = "https://twitter.com/intent/follow?screen_name=" + config.twitter.replace('@', '');
+                    p If you liked this post please 
+                        a(href=shareTwitterUrl, rel="noopener noreferrer", target="_blank") share it on Twitter
+                        |&nbsp;or 
+                        a(href=followUrl, rel="noopener noreferrer", target="_blank") follow @dkundel on Twitter

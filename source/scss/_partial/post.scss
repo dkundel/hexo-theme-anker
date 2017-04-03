@@ -52,7 +52,8 @@
     }
     h4, h5, h6 {
         a:before {
-            content: "";
+            content: "##";
+            left: -1.4em;
         }
     }
 
@@ -63,9 +64,12 @@
     h4, h5, h6 {
         font-size: 18px;
     }
+    p {
+        text-align: justify;
+    }
     a {
         color: #42b983;
-        word-break: break-all;
+        // word-break: break-all;
     }
     blockquote {
         margin: 2em 0;
@@ -75,6 +79,7 @@
     img {
         display: block;
         max-width: 100%;
+        max-height: 500px;
         margin: 1em auto;
     }
     & > table,
@@ -129,6 +134,22 @@ pre {
     font-size: 0.8em;
     background-color: #f8f8f8;
     font-family: 'Roboto Mono', Monaco, courier, monospace;
+}
+
+.share-link-box {
+    background: #4fc08d;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+
+    a {
+        color: #fff;
+        text-decoration: underline;
+
+        &:hover, &:focus {
+            font-weight: 800;
+        }
+    }
 }
 
 .highlight {
